@@ -1,0 +1,18 @@
+{
+  "name": "CineExplorer",
+  "short_name": "CineExplorer",
+  "description": "Descubra filmes e séries, veja trailers e onde assistir.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d14",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["entertainment"]
+}

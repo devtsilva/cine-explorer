@@ -1,0 +1,38 @@
+.skeleton-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.skeleton-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: var(--skeleton-base);
+}
+
+.skeleton-body {
+  padding: 10px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--skeleton-base);
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--skeleton-shine) 50%, transparent 100%);
+  animation: shimmer 1.5s ease-in-out infinite;
+}

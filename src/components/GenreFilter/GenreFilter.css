@@ -1,0 +1,36 @@
+.genre-filter {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.genre-filter::-webkit-scrollbar { display: none; }
+
+.genre-filter__chip {
+  flex-shrink: 0;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.genre-filter__chip:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.genre-filter__chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
