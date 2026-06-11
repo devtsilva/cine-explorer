@@ -1,5 +1,5 @@
-export default async function handler(req: any, res: any) {
-  const pathParts: string[] = Array.isArray(req.query.path)
+export default async function handler(req, res) {
+  const pathParts = Array.isArray(req.query.path)
     ? req.query.path
     : req.query.path ? [req.query.path] : []
 
