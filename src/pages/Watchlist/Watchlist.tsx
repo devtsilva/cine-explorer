@@ -1,16 +1,11 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useWatchlistContext } from '../../context/WatchlistContext'
 import { MovieGrid } from '../../components/MovieGrid/MovieGrid'
-import type { Movie } from '../../types/tmdb'
 import './Watchlist.css'
 
 export function Watchlist() {
   const { watchlist } = useWatchlistContext()
-  const [selected, setSelected] = useState<Movie | null>(null)
-
-  void selected
 
   return (
     <main className="watchlist page-wrapper">
@@ -38,7 +33,6 @@ export function Watchlist() {
           <MovieGrid
             movies={watchlist}
             loading={false}
-            onMovieClick={setSelected}
             emptyMessage=""
           />
         )}

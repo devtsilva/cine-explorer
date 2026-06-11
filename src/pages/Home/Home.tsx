@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
 import { MovieGrid } from '../../components/MovieGrid/MovieGrid'
-import { GenreFilter, CATEGORIES } from '../../components/GenreFilter/GenreFilter'
+import { GenreFilter } from '../../components/GenreFilter/GenreFilter'
 import { MoodPicker } from './MoodPicker'
 import { tmdb, backdropUrl, getTitle } from '../../services/tmdb'
 import { useDebounce } from '../../hooks/useDebounce'
@@ -46,7 +46,7 @@ export function Home() {
       if (q.trim()) {
         const res = await tmdb.searchMulti(q, pg)
         results = res.data.results.filter(m =>
-          m.media_type !== 'person' && m.poster_path
+          (m.media_type as string) !== 'person' && m.poster_path
         )
         total = res.data.total_pages
       } else {

@@ -4,14 +4,12 @@ import type {
   CastMember, CrewMember, WatchProviders, Image, DiscoverParams
 } from '../types/tmdb'
 
-const BASE_URL = 'https://api.themoviedb.org/3'
 export const IMAGE_BASE = 'https://image.tmdb.org/t/p'
 export const PROVIDER_IMAGE = 'https://image.tmdb.org/t/p/original'
 
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: '/api/tmdb',
   params: {
-    api_key: import.meta.env.VITE_TMDB_API_KEY,
     language: 'pt-BR',
   },
 })

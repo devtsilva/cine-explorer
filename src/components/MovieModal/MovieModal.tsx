@@ -27,12 +27,12 @@ export function MovieModal({ movie, onClose }: Props) {
     const type = movie.media_type === 'tv' ? 'tv' : 'movie'
     const detailReq = type === 'tv' ? tmdb.getTvDetail(movie.id) : tmdb.getMovieDetail(movie.id)
 
-    Promise.all([detailReq, tmdb.getMovieVideos(movie.id, type)])
+    Promise.all([detailReq, tmdb.getVideos(movie.id, type)])
       .then(([dRes, vRes]) => {
         setDetail(dRes.data)
         const official = vRes.data.results.find(
-          v => v.site === 'YouTube' && v.type === 'Trailer' && v.official
-        ) ?? vRes.data.results.find(v => v.site === 'YouTube' && v.type === 'Trailer')
+          (v: Video) => v.site === 'YouTube' && v.type === 'Trailer' && v.official
+        ) ?? vRes.data.results.find((v: Video) => v.site === 'YouTube' && v.type === 'Trailer')
         setTrailer(official ?? null)
       })
       .finally(() => setLoading(false))
