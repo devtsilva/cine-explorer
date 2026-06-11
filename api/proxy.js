@@ -1,12 +1,12 @@
 export default async function handler(req, res) {
-  const pathParts = Array.isArray(req.query.path)
-    ? req.query.path
-    : req.query.path ? [req.query.path] : []
+  const { path, ...params } = req.query
 
-  const tmdbPath = pathParts.join('/')
-  const tmdbUrl = new URL(`https://api.themoviedb.org/3/${tmdbPath}`)
+  if (!path) {
+    res.status(400).json({ error: 'Missing path' })
+    return
+  }
 
-  const { path: _path, ...params } = req.query
+  const tmdbUrl = new URL(`https://api.themoviedb.org/3/${path}`)
   for (const [key, value] of Object.entries(params)) {
     tmdbUrl.searchParams.set(key, String(value))
   }

@@ -7,11 +7,14 @@ import type {
 export const IMAGE_BASE = 'https://image.tmdb.org/t/p'
 export const PROVIDER_IMAGE = 'https://image.tmdb.org/t/p/original'
 
-const api = axios.create({
-  baseURL: '/api/tmdb',
-  params: {
-    language: 'pt-BR',
-  },
+const api = axios.create({ baseURL: '/api/proxy', params: { language: 'pt-BR' } })
+
+api.interceptors.request.use((config) => {
+  const url = new URL(config.url ?? '', 'http://x')
+  const tmdbPath = url.pathname.replace(/^\//, '')
+  config.url = ''
+  config.params = { ...config.params, path: tmdbPath }
+  return config
 })
 
 export const tmdb = {

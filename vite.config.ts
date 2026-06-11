@@ -8,14 +8,17 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       proxy: {
-        '/api/tmdb': {
+        '/api/proxy': {
           target: 'https://api.themoviedb.org/3',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api\/tmdb/, ''),
           configure: (proxy) => {
             proxy.on('proxyReq', (proxyReq) => {
-              const sep = proxyReq.path.includes('?') ? '&' : '?'
-              proxyReq.path += `${sep}api_key=${env.TMDB_API_KEY}`
+              const [, queryStr = ''] = proxyReq.path.split('?')
+              const qs = new URLSearchParams(queryStr)
+              const tmdbPath = qs.get('path') ?? ''
+              qs.delete('path')
+              qs.set('api_key', env.TMDB_API_KEY ?? '')
+              proxyReq.path = `/${tmdbPath}?${qs.toString()}`
             })
           },
         },
